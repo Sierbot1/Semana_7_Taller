@@ -1,3 +1,0 @@
-$kind: collection
-description: "Deja la base como estaba. Borra primero los prestamos: no se puede eliminar un equipo o un estudiante con prestamos activos."
-order: 5000

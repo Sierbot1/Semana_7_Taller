@@ -1,0 +1,694 @@
+<title>Evidencias de pruebas - loan-api</title>
+<style>
+  :root {
+    --bg:#f6f7f9; --card:#fff; --ink:#1a1d21; --muted:#5c6470; --line:#e2e5ea;
+    --ok:#1a7f4b; --okbg:#e7f5ed; --bad:#b3261e; --badbg:#fdecea; --pre:#f3f4f6;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; }
+  .wrap { max-width:900px; margin:0 auto; padding:32px 20px 60px; }
+  h1 { font-size:24px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 24px; }
+  .summary { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px; }
+  .stat { background:var(--card); border:1px solid var(--line); border-radius:10px;
+          padding:12px 18px; }
+  .stat b { display:block; font-size:22px; }
+  .stat span { color:var(--muted); font-size:12px; text-transform:uppercase;
+               letter-spacing:.04em; }
+  h2 { font-size:15px; text-transform:uppercase; letter-spacing:.06em;
+       color:var(--muted); margin:32px 0 12px; padding-bottom:6px;
+       border-bottom:1px solid var(--line); }
+  .card { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--ok);
+          border-radius:10px; padding:16px 18px; margin-bottom:14px; page-break-inside:avoid; }
+  .card.bad { border-left-color:var(--bad); }
+  header { display:flex; align-items:center; gap:10px; }
+  header h3 { font-size:15px; margin:0; flex:1; font-weight:600; }
+  .m { font:600 11px/1 ui-monospace,Consolas,monospace; padding:5px 7px; border-radius:5px;
+       background:#eef1f5; color:#3a4350; letter-spacing:.04em; }
+  .m.post { background:#e7f3ff; color:#0b5ba1; }
+  .m.put { background:#fff3e0; color:#96590d; }
+  .m.delete { background:#fdecea; color:#a1231c; }
+  .code { font:700 13px ui-monospace,Consolas,monospace; padding:4px 9px; border-radius:20px;
+          background:var(--okbg); color:var(--ok); }
+  .code.bad { background:var(--badbg); color:var(--bad); }
+  .url { font:13px ui-monospace,Consolas,monospace; color:var(--muted);
+         margin:10px 0 0; word-break:break-all; }
+  .desc { color:var(--muted); margin:8px 0 0; font-size:13px; }
+  .io { margin-top:12px; }
+  .lbl { display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+         color:var(--muted); margin-bottom:4px; }
+  pre { background:var(--pre); border:1px solid var(--line); border-radius:7px;
+        padding:10px 12px; margin:0; overflow-x:auto;
+        font:12.5px/1.45 ui-monospace,Consolas,monospace; white-space:pre-wrap;
+        word-break:break-word; }
+  @media print { body { background:#fff; } .card { break-inside:avoid; } }
+</style>
+<div class="wrap">
+  <h1>Evidencias de pruebas &mdash; API de pr&eacute;stamo de equipos TIC</h1>
+  <p class="sub">Taller Semana 7 &middot; Desarrollo Orientado a Servicios &middot;
+     Universidad Santo Tom&aacute;s<br>
+     Ejecuci&oacute;n real contra <code>http://localhost:8080/api</code> (Quarkus + MySQL)
+     el 19/09/2026 a las 12:25</p>
+  <div class="summary">
+    <div class="stat"><b>38</b><span>Peticiones</span></div>
+    <div class="stat"><b style="color:var(--ok)">38</b><span>Correctas</span></div>
+    <div class="stat"><b style="color:var(--bad)">0</b><span>Fallidas</span></div>
+  </div>
+  <h2>1. Equipos</h2>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>Crear equipo - portatil</h3><span class="code ok">201</span></header>
+  <p class="url">http://localhost:8080/api/equipment</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;code&quot;: &quot;PORT-001&quot;,
+  &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+  &quot;stock&quot;: 5
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;code&quot;: &quot;PORT-001&quot;,
+  &quot;id&quot;: 8,
+  &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+  &quot;stock&quot;: 5
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>Crear equipo - camara</h3><span class="code ok">201</span></header>
+  <p class="url">http://localhost:8080/api/equipment</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;code&quot;: &quot;CAM-001&quot;,
+  &quot;name&quot;: &quot;Camara Canon EOS&quot;,
+  &quot;stock&quot;: 2
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;code&quot;: &quot;CAM-001&quot;,
+  &quot;id&quot;: 9,
+  &quot;name&quot;: &quot;Camara Canon EOS&quot;,
+  &quot;stock&quot;: 2
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>Crear equipo - sensor</h3><span class="code ok">201</span></header>
+  <p class="url">http://localhost:8080/api/equipment</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;code&quot;: &quot;SEN-001&quot;,
+  &quot;name&quot;: &quot;Sensor Arduino DHT22&quot;,
+  &quot;stock&quot;: 10
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;code&quot;: &quot;SEN-001&quot;,
+  &quot;id&quot;: 10,
+  &quot;name&quot;: &quot;Sensor Arduino DHT22&quot;,
+  &quot;stock&quot;: 10
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>Listar equipos</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/equipment</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>[
+  {
+    &quot;code&quot;: &quot;PORT-001&quot;,
+    &quot;id&quot;: 8,
+    &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+    &quot;stock&quot;: 5
+  },
+  {
+    &quot;code&quot;: &quot;CAM-001&quot;,
+    &quot;id&quot;: 9,
+    &quot;name&quot;: &quot;Camara Canon EOS&quot;,
+    &quot;stock&quot;: 2
+  },
+  {
+    &quot;code&quot;: &quot;SEN-001&quot;,
+    &quot;id&quot;: 10,
+    &quot;name&quot;: &quot;Sensor Arduino DHT22&quot;,
+    &quot;stock&quot;: 10
+  }
+]</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>Obtener equipo por id</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/equipment/8</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;code&quot;: &quot;PORT-001&quot;,
+  &quot;id&quot;: 8,
+  &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+  &quot;stock&quot;: 5
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m put">PUT</span><h3>Actualizar equipo</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/equipment/8</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;code&quot;: &quot;PORT-001&quot;,
+  &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+  &quot;stock&quot;: 6
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;code&quot;: &quot;PORT-001&quot;,
+  &quot;id&quot;: 8,
+  &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+  &quot;stock&quot;: 6
+}</pre></div>
+</section>
+<h2>2. Estudiantes</h2>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>Crear estudiante - Ana</h3><span class="code ok">201</span></header>
+  <p class="url">http://localhost:8080/api/students</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;name&quot;: &quot;Ana Pérez&quot;,
+  &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+  &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+  &quot;id&quot;: 6,
+  &quot;name&quot;: &quot;Ana Pérez&quot;,
+  &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>Crear estudiante - Luis</h3><span class="code ok">201</span></header>
+  <p class="url">http://localhost:8080/api/students</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;name&quot;: &quot;Luis Gómez&quot;,
+  &quot;email&quot;: &quot;luis.gomez@usantoto.edu.co&quot;,
+  &quot;program&quot;: &quot;Ingeniería de Telecomunicaciones&quot;
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;email&quot;: &quot;luis.gomez@usantoto.edu.co&quot;,
+  &quot;id&quot;: 7,
+  &quot;name&quot;: &quot;Luis Gómez&quot;,
+  &quot;program&quot;: &quot;Ingeniería de Telecomunicaciones&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>Listar estudiantes</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/students</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>[
+  {
+    &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+    &quot;id&quot;: 6,
+    &quot;name&quot;: &quot;Ana Pérez&quot;,
+    &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+  },
+  {
+    &quot;email&quot;: &quot;luis.gomez@usantoto.edu.co&quot;,
+    &quot;id&quot;: 7,
+    &quot;name&quot;: &quot;Luis Gómez&quot;,
+    &quot;program&quot;: &quot;Ingeniería de Telecomunicaciones&quot;
+  }
+]</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>Obtener estudiante por id</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/students/6</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+  &quot;id&quot;: 6,
+  &quot;name&quot;: &quot;Ana Pérez&quot;,
+  &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m put">PUT</span><h3>Actualizar estudiante</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/students/6</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;name&quot;: &quot;Ana Pérez Gómez&quot;,
+  &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+  &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+  &quot;id&quot;: 6,
+  &quot;name&quot;: &quot;Ana Pérez Gómez&quot;,
+  &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>Prestamos del estudiante</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/students/6/loans</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>[]</pre></div>
+</section>
+<h2>3. Prestamos</h2>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>Registrar prestamo (descuenta stock)</h3><span class="code ok">201</span></header>
+  <p class="url">http://localhost:8080/api/loans</p>
+  <p class="desc">Resta la cantidad al stock del equipo (6 -&gt; 4). loanDate es opcional: si no se envia se usa la fecha de hoy.</p>
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;studentId&quot;: &quot;{{anaId}}&quot;,
+  &quot;equipmentId&quot;: &quot;{{portatilId}}&quot;,
+  &quot;quantity&quot;: 2
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;id&quot;: 4,
+  &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+  &quot;returnDate&quot;: null,
+  &quot;quantity&quot;: 2,
+  &quot;equipment&quot;: {
+    &quot;code&quot;: &quot;PORT-001&quot;,
+    &quot;id&quot;: 8,
+    &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+    &quot;stock&quot;: 4
+  },
+  &quot;student&quot;: {
+    &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+    &quot;id&quot;: 6,
+    &quot;name&quot;: &quot;Ana Pérez Gómez&quot;,
+    &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+  }
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>Registrar prestamo con fecha</h3><span class="code ok">201</span></header>
+  <p class="url">http://localhost:8080/api/loans</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;studentId&quot;: &quot;{{luisId}}&quot;,
+  &quot;equipmentId&quot;: &quot;{{camaraId}}&quot;,
+  &quot;quantity&quot;: 1,
+  &quot;loanDate&quot;: &quot;2026-09-19&quot;
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;id&quot;: 5,
+  &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+  &quot;returnDate&quot;: null,
+  &quot;quantity&quot;: 1,
+  &quot;equipment&quot;: {
+    &quot;code&quot;: &quot;CAM-001&quot;,
+    &quot;id&quot;: 9,
+    &quot;name&quot;: &quot;Camara Canon EOS&quot;,
+    &quot;stock&quot;: 1
+  },
+  &quot;student&quot;: {
+    &quot;email&quot;: &quot;luis.gomez@usantoto.edu.co&quot;,
+    &quot;id&quot;: 7,
+    &quot;name&quot;: &quot;Luis Gómez&quot;,
+    &quot;program&quot;: &quot;Ingeniería de Telecomunicaciones&quot;
+  }
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>Listar prestamos</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/loans</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>[
+  {
+    &quot;id&quot;: 4,
+    &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+    &quot;returnDate&quot;: null,
+    &quot;quantity&quot;: 2,
+    &quot;equipment&quot;: {
+      &quot;code&quot;: &quot;PORT-001&quot;,
+      &quot;id&quot;: 8,
+      &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+      &quot;stock&quot;: 4
+    },
+    &quot;student&quot;: {
+      &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+      &quot;id&quot;: 6,
+      &quot;name&quot;: &quot;Ana Pérez Gómez&quot;,
+      &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 5,
+    &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+    &quot;returnDate&quot;: null,
+    &quot;quantity&quot;: 1,
+    &quot;equipment&quot;: {
+      &quot;code&quot;: &quot;CAM-001&quot;,
+      &quot;id&quot;: 9,
+      &quot;name&quot;: &quot;Camara Canon EOS&quot;,
+      &quot;stock&quot;: 1
+    },
+    &quot;student&quot;: {
+      &quot;email&quot;: &quot;luis.gomez@usantoto.edu.co&quot;,
+      &quot;id&quot;: 7,
+      &quot;name&quot;: &quot;Luis Gómez&quot;,
+      &quot;program&quot;: &quot;Ingeniería de Telecomunicaciones&quot;
+    }
+  }
+]</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>Listar prestamos activos</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/loans/active</p>
+  <p class="desc">Solo los que tienen returnDate en null.</p>
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>[
+  {
+    &quot;id&quot;: 4,
+    &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+    &quot;returnDate&quot;: null,
+    &quot;quantity&quot;: 2,
+    &quot;equipment&quot;: {
+      &quot;code&quot;: &quot;PORT-001&quot;,
+      &quot;id&quot;: 8,
+      &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+      &quot;stock&quot;: 4
+    },
+    &quot;student&quot;: {
+      &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+      &quot;id&quot;: 6,
+      &quot;name&quot;: &quot;Ana Pérez Gómez&quot;,
+      &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+    }
+  },
+  {
+    &quot;id&quot;: 5,
+    &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+    &quot;returnDate&quot;: null,
+    &quot;quantity&quot;: 1,
+    &quot;equipment&quot;: {
+      &quot;code&quot;: &quot;CAM-001&quot;,
+      &quot;id&quot;: 9,
+      &quot;name&quot;: &quot;Camara Canon EOS&quot;,
+      &quot;stock&quot;: 1
+    },
+    &quot;student&quot;: {
+      &quot;email&quot;: &quot;luis.gomez@usantoto.edu.co&quot;,
+      &quot;id&quot;: 7,
+      &quot;name&quot;: &quot;Luis Gómez&quot;,
+      &quot;program&quot;: &quot;Ingeniería de Telecomunicaciones&quot;
+    }
+  }
+]</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>Obtener prestamo por id</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/loans/4</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;id&quot;: 4,
+  &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+  &quot;returnDate&quot;: null,
+  &quot;quantity&quot;: 2,
+  &quot;equipment&quot;: {
+    &quot;code&quot;: &quot;PORT-001&quot;,
+    &quot;id&quot;: 8,
+    &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+    &quot;stock&quot;: 4
+  },
+  &quot;student&quot;: {
+    &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+    &quot;id&quot;: 6,
+    &quot;name&quot;: &quot;Ana Pérez Gómez&quot;,
+    &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+  }
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m put">PUT</span><h3>Actualizar prestamo activo</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/loans/4</p>
+  <p class="desc">Devuelve al stock la cantidad anterior y descuenta la nueva (4 -&gt; 3).</p>
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;studentId&quot;: &quot;{{anaId}}&quot;,
+  &quot;equipmentId&quot;: &quot;{{portatilId}}&quot;,
+  &quot;quantity&quot;: 3
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;id&quot;: 4,
+  &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+  &quot;returnDate&quot;: null,
+  &quot;quantity&quot;: 3,
+  &quot;equipment&quot;: {
+    &quot;code&quot;: &quot;PORT-001&quot;,
+    &quot;id&quot;: 8,
+    &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+    &quot;stock&quot;: 3
+  },
+  &quot;student&quot;: {
+    &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+    &quot;id&quot;: 6,
+    &quot;name&quot;: &quot;Ana Pérez Gómez&quot;,
+    &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+  }
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m put">PUT</span><h3>Devolver equipo (suma stock)</h3><span class="code ok">200</span></header>
+  <p class="url">http://localhost:8080/api/loans/4/return</p>
+  <p class="desc">Sin cuerpo. Pone return_date y devuelve las unidades al stock (3 -&gt; 6).</p>
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;id&quot;: 4,
+  &quot;loanDate&quot;: &quot;2026-09-19&quot;,
+  &quot;returnDate&quot;: &quot;2026-09-19&quot;,
+  &quot;quantity&quot;: 3,
+  &quot;equipment&quot;: {
+    &quot;code&quot;: &quot;PORT-001&quot;,
+    &quot;id&quot;: 8,
+    &quot;name&quot;: &quot;Portatil Lenovo T14&quot;,
+    &quot;stock&quot;: 6
+  },
+  &quot;student&quot;: {
+    &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+    &quot;id&quot;: 6,
+    &quot;name&quot;: &quot;Ana Pérez Gómez&quot;,
+    &quot;program&quot;: &quot;Ingeniería de Sistemas&quot;
+  }
+}</pre></div>
+</section>
+<h2>4. Casos de error</h2>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>400 - equipo con datos incompletos</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/equipment</p>
+  <p class="desc">Faltan code y stock. Responde: El codigo del equipo es obligatorio, El stock es obligatorio</p>
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;name&quot;: &quot;Cámara sin código&quot;
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;El stock es obligatorio, El código del equipo es obligatorio&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>400 - correo invalido</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/students</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;name&quot;: &quot;Luis&quot;,
+  &quot;email&quot;: &quot;no-es-un-correo&quot;,
+  &quot;program&quot;: &quot;Ingeniería&quot;
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;El correo debe ser válido&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>400 - cantidad en cero</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/loans</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;studentId&quot;: &quot;{{anaId}}&quot;,
+  &quot;equipmentId&quot;: &quot;{{portatilId}}&quot;,
+  &quot;quantity&quot;: 0
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;La cantidad debe ser mayor o igual a 1&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>400 - sin stock suficiente</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/loans</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;studentId&quot;: &quot;{{anaId}}&quot;,
+  &quot;equipmentId&quot;: &quot;{{portatilId}}&quot;,
+  &quot;quantity&quot;: 50
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;Stock insuficiente para el equipo: Portatil Lenovo T14 (disponibles: 6)&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>400 - codigo de equipo repetido</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/equipment</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;code&quot;: &quot;PORT-001&quot;,
+  &quot;name&quot;: &quot;Otro portátil&quot;,
+  &quot;stock&quot;: 1
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;Ya existe un equipo con el código: PORT-001&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>400 - correo de estudiante repetido</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/students</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;name&quot;: &quot;Otra Ana&quot;,
+  &quot;email&quot;: &quot;ana.perez@usantoto.edu.co&quot;,
+  &quot;program&quot;: &quot;Ingeniería&quot;
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;Ya existe un estudiante con el correo: ana.perez@usantoto.edu.co&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m post">POST</span><h3>404 - estudiante no existe</h3><span class="code ok">404</span></header>
+  <p class="url">http://localhost:8080/api/loans</p>
+  
+  <div class="io"><span class="lbl">Cuerpo enviado</span><pre>{
+  &quot;studentId&quot;: 99999,
+  &quot;equipmentId&quot;: &quot;{{portatilId}}&quot;,
+  &quot;quantity&quot;: 1
+}</pre></div>
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;Estudiante no encontrado&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>404 - equipo no existe</h3><span class="code ok">404</span></header>
+  <p class="url">http://localhost:8080/api/equipment/99999</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;Equipo no encontrado&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m get">GET</span><h3>404 - prestamo no existe</h3><span class="code ok">404</span></header>
+  <p class="url">http://localhost:8080/api/loans/99999</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;Préstamo no encontrado&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>400 - eliminar equipo con prestamo activo</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/equipment/9</p>
+  <p class="desc">La camara sigue prestada a Luis (no se ha devuelto).</p>
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;No se puede eliminar el equipo: tiene préstamos activos&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>400 - eliminar estudiante con equipos sin devolver</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/students/7</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;No se puede eliminar el estudiante: tiene equipos sin devolver&quot;
+}</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m put">PUT</span><h3>400 - devolver un prestamo ya devuelto</h3><span class="code ok">400</span></header>
+  <p class="url">http://localhost:8080/api/loans/4/return</p>
+  <p class="desc">El prestamo de Ana ya se devolvio en la carpeta 3.</p>
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>{
+  &quot;error&quot;: &quot;El préstamo ya fue devuelto el 2026-09-19&quot;
+}</pre></div>
+</section>
+<h2>5. Limpieza</h2>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>Eliminar prestamo de Ana</h3><span class="code ok">204</span></header>
+  <p class="url">http://localhost:8080/api/loans/4</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>(sin cuerpo)</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>Eliminar prestamo de Luis</h3><span class="code ok">204</span></header>
+  <p class="url">http://localhost:8080/api/loans/5</p>
+  <p class="desc">Seguia activo, asi que la unidad vuelve al stock de la camara.</p>
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>(sin cuerpo)</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>Eliminar estudiante Ana</h3><span class="code ok">204</span></header>
+  <p class="url">http://localhost:8080/api/students/6</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>(sin cuerpo)</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>Eliminar estudiante Luis</h3><span class="code ok">204</span></header>
+  <p class="url">http://localhost:8080/api/students/7</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>(sin cuerpo)</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>Eliminar equipo portatil</h3><span class="code ok">204</span></header>
+  <p class="url">http://localhost:8080/api/equipment/8</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>(sin cuerpo)</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>Eliminar equipo camara</h3><span class="code ok">204</span></header>
+  <p class="url">http://localhost:8080/api/equipment/9</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>(sin cuerpo)</pre></div>
+</section>
+
+<section class="card ok">
+  <header><span class="m delete">DELETE</span><h3>Eliminar equipo sensor</h3><span class="code ok">204</span></header>
+  <p class="url">http://localhost:8080/api/equipment/10</p>
+  
+  
+  <div class="io"><span class="lbl">Respuesta</span><pre>(sin cuerpo)</pre></div>
+</section>
+</div>

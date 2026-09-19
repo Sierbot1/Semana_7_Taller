@@ -1,9 +1,0 @@
-$kind: http-request
-description: Solo los que tienen returnDate en null.
-url: "{{baseUrl}}/loans/active"
-method: GET
-scripts:
-  - type: afterResponse
-    code: pm.test("Responde 200", function () { pm.response.to.have.status(200); });
-    language: text/javascript
-order: 4000

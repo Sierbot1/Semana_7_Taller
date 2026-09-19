@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>usta</groupId>
     <artifactId>loan-api</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>taller7</version>
     <packaging>quarkus</packaging>
     <name>loan-api - Prestamo de Equipos TIC</name>
     <description>API REST de prestamo de equipos TIC con Quarkus</description>
