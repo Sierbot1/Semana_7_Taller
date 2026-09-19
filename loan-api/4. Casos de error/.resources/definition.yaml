@@ -1,0 +1,3 @@
+$kind: collection
+description: Validaciones de Bean Validation (400), reglas de negocio (400) y recursos inexistentes (404). Requiere haber ejecutado las carpetas 1 a 3.
+order: 4000

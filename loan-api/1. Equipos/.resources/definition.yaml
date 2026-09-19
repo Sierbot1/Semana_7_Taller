@@ -1,0 +1,3 @@
+$kind: collection
+description: CRUD de equipos TIC. Cada creacion guarda su id en una variable de coleccion ({{portatilId}}, {{camaraId}}, {{sensorId}}), asi que no dependes de que la base este vacia.
+order: 1000

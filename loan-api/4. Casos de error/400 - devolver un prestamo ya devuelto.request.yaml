@@ -1,0 +1,11 @@
+$kind: http-request
+description: El prestamo de Ana ya se devolvio en la carpeta 3.
+url: "{{baseUrl}}/loans/{{prestamoAnaId}}/return"
+method: PUT
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Responde 400", function () { pm.response.to.have.status(400); });
+      pm.test("Mensaje de error claro", function () { pm.expect(pm.response.json().error).to.be.a("string").and.not.empty; });
+    language: text/javascript
+order: 12000

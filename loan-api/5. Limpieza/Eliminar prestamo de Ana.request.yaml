@@ -1,0 +1,9 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/loans/{{prestamoAnaId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: pm.test("Responde 204", function () { pm.response.to.have.status(204); });
+    language: text/javascript
+order: 1000

@@ -1,0 +1,11 @@
+$kind: collection
+description: |-
+  Pruebas de la API de prestamo de equipos TIC (Quarkus + MySQL).
+
+  Antes de ejecutar: MySQL corriendo en XAMPP y la app arrancada con quarkus:dev.
+
+  Ejecuta las carpetas en orden (1 -> 5); tambien puedes lanzarla entera con el Collection Runner. Los ids se guardan solos en variables de coleccion, asi que no importa si la base ya tiene datos.
+
+  Variable baseUrl: http://localhost:8080/api
+variables:
+  baseUrl: http://localhost:8080/api

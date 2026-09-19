@@ -1,0 +1,21 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/equipment"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "code": "SEN-001",
+      "name": "Sensor Arduino DHT22",
+      "stock": 10
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Responde 201", function () { pm.response.to.have.status(201); });
+      pm.collectionVariables.set("sensorId", pm.response.json().id);
+    language: text/javascript
+order: 3000

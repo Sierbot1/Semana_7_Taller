@@ -1,0 +1,3 @@
+$kind: collection
+description: CRUD de estudiantes y consulta de sus prestamos.
+order: 2000

@@ -1,0 +1,11 @@
+$kind: http-request
+description: La camara sigue prestada a Luis (no se ha devuelto).
+url: "{{baseUrl}}/equipment/{{camaraId}}"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Responde 400", function () { pm.response.to.have.status(400); });
+      pm.test("Mensaje de error claro", function () { pm.expect(pm.response.json().error).to.be.a("string").and.not.empty; });
+    language: text/javascript
+order: 10000
